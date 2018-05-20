@@ -66,6 +66,35 @@ class LinkedList:
 
 		temp = None
 
+	def delete_node_at(self, node):
+		
+		# Store head node
+		temp = self.head
+
+		# If head node itself holds the key to be deleted
+		if (temp is not None):
+			if (temp == node):
+				self.head = temp.next
+				temp = None
+				return
+
+		# Search for the key to be deleted, keep track of the
+		# previous node as we need to change 'prev.next'
+		while(temp is not None):
+			if temp == node:
+				break
+			prev = temp
+			temp = temp.next
+
+		# if key was not present in linked list
+		if(temp == None):
+			return
+
+		# Unlink the node from linked list
+		prev.next = temp.next
+
+		temp = None
+
 
 
 
@@ -95,8 +124,11 @@ if __name__ == '__main__':
 	# linked_list.append(9)
 	# linked_list.print_linked_list()
 
-	print("Linked List after deleting 2")
-	linked_list.delete_node(2)
-	linked_list.print_linked_list()
+	# print("Linked List after deleting 2")
+	# linked_list.delete_node(2)
+	# linked_list.print_linked_list()
 
+	print("Linked List after deleting second node")
+	linked_list.delete_node_at(second)
+	linked_list.print_linked_list()
 

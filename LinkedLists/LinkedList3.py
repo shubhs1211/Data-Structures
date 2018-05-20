@@ -1,0 +1,102 @@
+class Node:
+
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+
+	def print_linked_list(self):
+		temp = self.head
+		while temp:
+			print(temp.data)
+			temp = temp.next
+
+	def push(self, data):
+		new_node = Node(data)
+		new_node.next = linked_list.head
+		self.head = new_node
+
+	def insert_after(self, node, data):
+		if node is None:
+			print("The node does not exist.")
+			return
+		new_node = Node(data)
+		
+		new_node.next = node.next
+		node.next = new_node
+
+	def append(self, data):
+		new_node = Node(data)
+		temp = self.head
+		while temp.next:
+			temp = temp.next
+
+		temp.next = new_node
+
+	def delete_node(self, data):
+		
+		# Store head node
+		temp = self.head
+
+		# If head node itself holds the key to be deleted
+		if (temp is not None):
+			if (temp.data == data):
+				self.head = temp.next
+				temp = None
+				return
+
+		# Search for the key to be deleted, keep track of the
+		# previous node as we need to change 'prev.next'
+		while(temp is not None):
+			if temp.data == data:
+				break
+			prev = temp
+			temp = temp.next
+
+		# if key was not present in linked list
+		if(temp == None):
+			return
+
+		# Unlink the node from linked list
+		prev.next = temp.next
+
+		temp = None
+
+
+
+
+if __name__ == '__main__':
+
+	linked_list = LinkedList()
+
+	linked_list.head = Node(1)
+	second = Node(2)
+	third = Node(3)
+
+	linked_list.head.next = second
+	second.next = third
+
+	print("Linked List")
+	linked_list.print_linked_list()
+	
+	# print("Linked List after pushing 4")
+	# linked_list.push(4)
+	# linked_list.print_linked_list()
+
+	# print("Linked List after inserting 5 after second")
+	# linked_list.insert_after(second, 5)
+	# linked_list.print_linked_list()
+
+	# print("Linked List after append 9")
+	# linked_list.append(9)
+	# linked_list.print_linked_list()
+
+	print("Linked List after deleting 2")
+	linked_list.delete_node(2)
+	linked_list.print_linked_list()
+
+
